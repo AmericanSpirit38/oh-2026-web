@@ -359,3 +359,985 @@ html, body, #__next, .mainContent, .full {
   border: 1px solid #f0f0f0;
   border-radius: 2px;
 }
+/* ---------- mobile overrides ---------- */
+@media screen and (max-width: 700px) {
+
+  section.ant-layout.ant-layout-has-sider.limit {
+    padding: 0 0.75rem;
+  }
+
+  .header {
+    padding: 0 12px !important;
+  }
+
+  .menuContainer {
+    height: auto;
+    padding-top: 0.35rem;
+  }
+
+  .titleArea {
+    padding-top: 0.5rem;
+    font-size: 1.2em;
+
+    .logo img {
+      width: 110px;
+      margin: -8px;
+    }
+
+    .logo2 img {
+      height: 64px;
+    }
+  }
+
+  .sponsors {
+    margin: 0.75rem 0 0 0;
+    row-gap: 0.25rem;
+    column-gap: 0.6rem;
+
+    img {
+      width: 68px;
+      max-height: 2rem;
+      padding-right: 0;
+    }
+  }
+
+  .ant-menu-horizontal > .ant-menu-item {
+    padding: 0 14px;
+
+    a {
+      font-size: 1rem;
+      line-height: 2.6rem;
+    }
+  }
+
+  .fcontent {
+    margin-left: 0;
+    justify-content: center;
+    font-size: 0.85rem;
+  }
+}
+
+/* ---------- mobile overrides ---------- */
+@media screen and (max-width: 700px) {
+
+  section.ant-layout.ant-layout-has-sider.limit {
+    padding: 0 0.75rem;
+  }
+
+  .header {
+    padding: 0 12px !important;
+  }
+
+  .menuContainer {
+    height: auto;
+    padding-top: 0.35rem;
+  }
+
+  .titleArea {
+    padding-top: 0.5rem;
+    font-size: 1.2em;
+
+    .logo img {
+      width: 110px;
+      margin: -8px;
+    }
+
+    .logo2 img {
+      height: 64px;
+    }
+  }
+
+  .sponsors {
+    margin: 0.75rem 0 0 0;
+    row-gap: 0.25rem;
+    column-gap: 0.6rem;
+
+    img {
+      width: 68px;
+      max-height: 2rem;
+      padding-right: 0;
+    }
+  }
+
+  .ant-menu-horizontal > .ant-menu-item {
+    padding: 0 14px;
+
+    a {
+      font-size: 1rem;
+      line-height: 2.6rem;
+    }
+  }
+
+  .fcontent {
+    margin-left: 0;
+    justify-content: center;
+    font-size: 0.85rem;
+  }
+}
+
+/* ---------- sponsors moved to footer ---------- */
+.footerInner {
+  display: block;
+  width: 100%;
+}
+
+.footer .sponsors {
+  margin: 0 0 1rem 0;
+  padding-top: 0.5rem;
+}
+
+@media screen and (max-width: 700px) {
+  .footer .sponsors {
+    margin: 0 0 0.75rem 0;
+  }
+}
+
+/* ---------- dark mode ---------- */
+.themeToggle {
+  font-size: 1.1rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+html.dark {
+  --oh-bg: #141414;
+  --oh-surface: #1f1f1f;
+  --oh-border: #303030;
+  --oh-text: rgba(255, 255, 255, 0.85);
+  --oh-dim: rgba(255, 255, 255, 0.45);
+  --oh-primary: #177ddc;
+
+  background: var(--oh-bg);
+
+  body {
+    background: var(--oh-bg);
+    color: var(--oh-text);
+  }
+
+  .ant-layout,
+  .ant-layout-content,
+  .ant-layout-sider,
+  .ant-layout-header,
+  .header,
+  .content,
+  section.ant-layout.ant-layout-has-sider.limit {
+    background: var(--oh-bg) !important;
+    color: var(--oh-text);
+  }
+
+  .footer {
+    background: var(--oh-surface) !important;
+    color: var(--oh-dim);
+  }
+
+  h1, h2, h3, h4, h5, h6, .ant-typography {
+    color: var(--oh-text) !important;
+  }
+
+  a { color: var(--oh-primary); }
+  a:hover { color: #3c9ae8; }
+
+  .ant-menu, .ant-menu-horizontal {
+    background: transparent !important;
+    color: var(--oh-text);
+    border-bottom-color: var(--oh-border) !important;
+  }
+  .ant-menu-item a, .ant-menu-submenu-title { color: var(--oh-text) !important; }
+  .ant-menu-item-selected a, .ant-menu-item a:hover { color: var(--oh-primary) !important; }
+
+  .ant-list, .ant-list-item { color: var(--oh-text); border-color: var(--oh-border) !important; }
+  .ant-list-split .ant-list-item { border-bottom-color: var(--oh-border); }
+
+  .ant-card,
+  .ant-picker-panel,
+  .ant-picker-calendar,
+  .ant-picker-content,
+  .ant-select-dropdown {
+    background: var(--oh-surface) !important;
+    color: var(--oh-text) !important;
+    border-color: var(--oh-border) !important;
+  }
+
+  .ant-picker-calendar { border: 1px solid var(--oh-border); }
+  .ant-picker-panel { border-top-color: var(--oh-border) !important; }
+  .ant-picker-content th { color: var(--oh-dim) !important; }
+  .ant-picker-cell { color: rgba(255, 255, 255, 0.25) !important; }
+  .ant-picker-cell-in-view { color: var(--oh-text) !important; }
+  .ant-picker-cell:hover .ant-picker-cell-inner { background: rgba(255, 255, 255, 0.08) !important; }
+  .ant-picker-cell-selected .ant-picker-cell-inner {
+    background: var(--oh-primary) !important;
+    color: #fff !important;
+  }
+
+  .ant-select:not(.ant-select-disabled) .ant-select-selector {
+    background: var(--oh-surface) !important;
+    border-color: var(--oh-border) !important;
+    color: var(--oh-text) !important;
+  }
+  .ant-select-selection-item, .ant-select-arrow, .ant-select-item { color: var(--oh-text) !important; }
+  .ant-select-item-option-active, .ant-select-item-option-selected {
+    background: rgba(255, 255, 255, 0.08) !important;
+  }
+
+  .ant-radio-button-wrapper {
+    background: var(--oh-surface) !important;
+    border-color: var(--oh-border) !important;
+    color: var(--oh-text) !important;
+  }
+  .ant-radio-button-wrapper-checked {
+    border-color: var(--oh-primary) !important;
+    color: var(--oh-primary) !important;
+  }
+
+  .ant-pagination-item,
+  .ant-pagination-prev .ant-pagination-item-link,
+  .ant-pagination-next .ant-pagination-item-link {
+    background: var(--oh-surface) !important;
+    border-color: var(--oh-border) !important;
+  }
+  .ant-pagination-item a { color: var(--oh-text) !important; }
+  .ant-pagination-item-active { border-color: var(--oh-primary) !important; }
+  .ant-pagination-disabled .ant-pagination-item-link { color: var(--oh-dim) !important; }
+
+  .ant-empty-description { color: var(--oh-dim) !important; }
+  .ant-empty-img-simple-path { fill: #262626; }
+  .ant-empty-img-simple-ellipse { fill: rgba(255, 255, 255, 0.08); }
+
+  .ant-input, .ant-input-affix-wrapper, textarea.ant-input {
+    background: var(--oh-surface) !important;
+    border-color: var(--oh-border) !important;
+    color: var(--oh-text) !important;
+  }
+
+  .ant-divider { border-color: var(--oh-border) !important; }
+
+  .titleArea .logo img,
+  .titleArea .logo2 img {
+    filter: invert(1);
+  }
+
+  .footer .sponsors {
+    background: #fff;
+    border-radius: 8px;
+    padding: 0.75rem 0.5rem;
+  }
+}
+
+/* ---------- dark mode: fullscreen calendar (/calendar) ---------- */
+html.dark {
+
+  .ant-picker-calendar-full,
+  .ant-picker-calendar-full .ant-picker-panel {
+    background: var(--oh-bg) !important;
+  }
+
+  .ant-picker-calendar-full .ant-picker-panel .ant-picker-calendar-date {
+    border-top-color: var(--oh-border) !important;
+    background: transparent !important;
+  }
+
+  .ant-picker-calendar-date-value {
+    color: var(--oh-text) !important;
+  }
+
+  .ant-picker-cell:not(.ant-picker-cell-in-view) .ant-picker-calendar-date-value {
+    color: rgba(255, 255, 255, 0.3) !important;
+  }
+
+  .ant-picker-calendar-full .ant-picker-panel .ant-picker-cell-today .ant-picker-calendar-date {
+    border-top-color: var(--oh-primary) !important;
+  }
+
+  .ant-picker-calendar-date-today .ant-picker-calendar-date-value {
+    color: var(--oh-primary) !important;
+  }
+
+  .ant-picker-cell-selected .ant-picker-calendar-date,
+  .ant-picker-cell-selected:hover .ant-picker-calendar-date {
+    background: rgba(23, 125, 220, 0.2) !important;
+  }
+
+  .ant-picker-cell-selected .ant-picker-calendar-date-value {
+    color: #fff !important;
+  }
+
+  .ant-picker-calendar-full .ant-picker-panel .ant-picker-calendar-date:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+  }
+
+  .ant-badge-status-text,
+  .bigEvents li,
+  .events li {
+    color: var(--oh-text) !important;
+  }
+
+  .ant-picker-calendar-full .ant-picker-content th {
+    color: var(--oh-text) !important;
+  }
+}
+
+/* ---------- dark mode: fullscreen calendar (/calendar) ---------- */
+html.dark {
+
+  .ant-picker-calendar-full,
+  .ant-picker-calendar-full .ant-picker-panel {
+    background: var(--oh-bg) !important;
+  }
+
+  .ant-picker-calendar-full .ant-picker-panel .ant-picker-calendar-date {
+    border-top-color: var(--oh-border) !important;
+    background: transparent !important;
+  }
+
+  .ant-picker-calendar-date-value {
+    color: var(--oh-text) !important;
+  }
+
+  .ant-picker-cell:not(.ant-picker-cell-in-view) .ant-picker-calendar-date-value {
+    color: rgba(255, 255, 255, 0.3) !important;
+  }
+
+  .ant-picker-calendar-full .ant-picker-panel .ant-picker-cell-today .ant-picker-calendar-date {
+    border-top-color: var(--oh-primary) !important;
+  }
+
+  .ant-picker-calendar-date-today .ant-picker-calendar-date-value {
+    color: var(--oh-primary) !important;
+  }
+
+  .ant-picker-cell-selected .ant-picker-calendar-date,
+  .ant-picker-cell-selected:hover .ant-picker-calendar-date {
+    background: rgba(23, 125, 220, 0.2) !important;
+  }
+
+  .ant-picker-cell-selected .ant-picker-calendar-date-value {
+    color: #fff !important;
+  }
+
+  .ant-picker-calendar-full .ant-picker-panel .ant-picker-calendar-date:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+  }
+
+  .ant-badge-status-text,
+  .bigEvents li,
+  .events li {
+    color: var(--oh-text) !important;
+  }
+
+  .ant-picker-calendar-full .ant-picker-content th {
+    color: var(--oh-text) !important;
+  }
+}
+
+/* ---------- custom calendar header ---------- */
+.calHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 0.25rem;
+}
+
+.calTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  min-width: 11rem;
+  text-align: center;
+}
+
+.calNav,
+.calToday {
+  background: transparent;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  cursor: pointer;
+  color: inherit;
+  line-height: 1;
+}
+
+.calNav {
+  font-size: 1.25rem;
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.calToday {
+  margin-left: auto;
+  height: 2.25rem;
+  padding: 0 0.9rem;
+  font-size: 0.95rem;
+}
+
+.calNav:hover:not(:disabled),
+.calToday:hover:not(:disabled) {
+  border-color: #1890ff;
+  color: #1890ff;
+}
+
+.calNav:disabled,
+.calToday:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+@media screen and (max-width: 700px) {
+  .calTitle {
+    font-size: 1.05rem;
+    min-width: 0;
+    flex: 1;
+  }
+  .calToday {
+    padding: 0 0.6rem;
+    font-size: 0.85rem;
+  }
+}
+
+html.dark {
+  .calNav,
+  .calToday {
+    border-color: var(--oh-border);
+    color: var(--oh-text);
+  }
+  .calNav:hover:not(:disabled),
+  .calToday:hover:not(:disabled) {
+    border-color: var(--oh-primary);
+    color: var(--oh-primary);
+  }
+  .calTitle {
+    color: var(--oh-text);
+  }
+}
+
+/* ---------- mini calendar header (sidebar widget) ---------- */
+.calHeaderMini {
+  gap: 0.25rem;
+  padding: 0.4rem 0.1rem 0.6rem;
+
+  .calTitle {
+    font-size: 1rem;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .calNav {
+    width: 1.9rem;
+    height: 1.9rem;
+    font-size: 1.05rem;
+  }
+
+  .calToday {
+    height: 1.9rem;
+    padding: 0 0.6rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* ---------- calendar borders ---------- */
+.site-calendar-widget {
+  border: 1px solid #d9d9d9 !important;
+  border-radius: 4px !important;
+}
+
+.calHeaderMini .calToday,
+.calHeader .calToday {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calHeaderMini .calToday {
+  width: 1.9rem;
+  padding: 0;
+}
+
+.calHeader .calToday {
+  width: 2.25rem;
+  padding: 0;
+}
+
+html.dark {
+  .site-calendar-widget {
+    border-color: #434343 !important;
+  }
+}
+
+/* ---------- theme toggle icon ---------- */
+.themeToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+/* ---------- dark mode: post list ---------- */
+html.dark {
+
+  .ant-list-item-meta-description {
+    color: var(--oh-dim) !important;
+  }
+
+  .ant-list-item-meta-title,
+  .ant-list-item-meta-title > a {
+    color: var(--oh-text) !important;
+  }
+
+  .ant-list-item-meta-title > a:hover {
+    color: var(--oh-primary) !important;
+  }
+
+  .ant-list-item-action > li,
+  .ant-list-item-action-split {
+    color: var(--oh-dim) !important;
+    background-color: var(--oh-border) !important;
+  }
+
+  .ant-tag {
+    background: #262626 !important;
+    border-color: var(--oh-border) !important;
+    color: var(--oh-text) !important;
+  }
+
+  .ant-avatar {
+    background: #262626 !important;
+    color: var(--oh-text) !important;
+  }
+
+  .ant-skeleton-title,
+  .ant-skeleton-paragraph > li {
+    background: rgba(255, 255, 255, 0.08) !important;
+  }
+}
+
+/* ---------- mobil: kalendár pod novinky ---------- */
+@media screen and (max-width: 700px) {
+  section.ant-layout.ant-layout-has-sider.limit {
+    flex-direction: column !important;
+  }
+}
+
+/* ---------- unified top bar (desktop) ---------- */
+@media screen and (min-width: 701px) {
+  .topBar {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    min-height: 72px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .topBar .titleArea {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-top: 0;
+    flex: 0 0 auto;
+    cursor: pointer;
+
+    .logo img {
+      width: 74px;
+      margin: 0;
+    }
+
+    .logo2 img {
+      height: 42px;
+      margin: 0;
+    }
+  }
+
+  .topBarNav {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .topBarNav .ant-menu,
+  .topBar .menuContainer .ant-menu {
+    border-bottom: none !important;
+    line-height: 70px;
+    background: transparent !important;
+  }
+
+  .topBar .menuContainer {
+    height: auto;
+    flex: 0 0 auto;
+  }
+
+  .topBar .ant-menu-item {
+    white-space: nowrap;
+  }
+}
+
+/* mobile: keep the stack, login on top as before */
+@media screen and (max-width: 700px) {
+  .topBar {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .topBar .menuContainer {
+    order: -1;
+  }
+}
+
+html.dark .topBar {
+  border-bottom-color: var(--oh-border);
+}
+
+/* ---------- bigger sidebar calendar ---------- */
+.site-calendar-widget {
+  width: 100% !important;
+}
+
+@media screen and (min-width: 701px) {
+  .site-calendar-widget {
+    .ant-picker-calendar-date-value {
+      font-size: 0.95rem;
+    }
+
+    .ant-picker-content th {
+      font-size: 0.9rem;
+    }
+
+    .ant-picker-cell {
+      padding: 4px 0;
+    }
+
+    .ant-picker-calendar-date-content {
+      min-height: 12px;
+    }
+  }
+}
+
+/* ---------- taller sidebar calendar ---------- */
+@media screen and (min-width: 701px) {
+  .site-calendar-widget {
+    .ant-picker-calendar-mini .ant-picker-content {
+      height: auto;
+    }
+
+    .ant-picker-content th {
+      height: 2.2rem;
+      line-height: 2.2rem;
+    }
+
+    .ant-picker-cell {
+      padding: 9px 0;
+    }
+
+    .ant-picker-cell-inner {
+      min-width: 2rem;
+      height: 2rem;
+      line-height: 2rem;
+    }
+
+    .ant-picker-calendar-date-content {
+      min-height: 14px;
+    }
+  }
+}
+
+/* ---------- always hide the 6th calendar row ---------- */
+.site-calendar-widget .ant-picker-content tbody tr:nth-child(6) {
+  display: none;
+}
+
+/* ---------- taller sidebar calendar rows ---------- */
+@media screen and (min-width: 701px) {
+  .site-calendar-widget {
+    .ant-picker-cell {
+      padding: 16px 0;
+    }
+
+    .ant-picker-cell-inner {
+      min-width: 2.3rem;
+      height: 2.3rem;
+      line-height: 2.3rem;
+      font-size: 1rem;
+    }
+
+    .ant-picker-content th {
+      height: 2.6rem;
+      line-height: 2.6rem;
+    }
+  }
+}
+
+/* ---------- section heading (Novinky) ---------- */
+.sectionTitle {
+  color: #1890ff;
+}
+
+html.dark .sectionTitle {
+  color: var(--oh-primary);
+}
+
+/* ---------- dark footer: blend in, reach the bottom ---------- */
+html.dark .footer {
+  background: var(--oh-bg) !important;
+  border-top: 1px solid var(--oh-border);
+}
+
+html, body, #__next {
+  min-height: 100vh;
+}
+
+.mainContent {
+  min-height: 100vh;
+}
+
+/* ---------- navy brand header ---------- */
+.header {
+  background: #101D6C !important;
+}
+
+.topBar {
+  border-bottom: none !important;
+}
+
+.logoMain {
+  display: flex;
+  align-items: center;
+
+  img {
+    height: 46px;
+    width: auto;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .logoMain img {
+    height: 34px;
+  }
+}
+
+.header .ant-menu,
+.header .ant-menu-horizontal {
+  background: transparent !important;
+  border-bottom: none !important;
+}
+
+.header .ant-menu-item a,
+.header .ant-menu-submenu-title,
+.header .themeToggle,
+.header .ant-menu-item {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.header .ant-menu-item a:hover,
+.header .ant-menu-item-selected a,
+.header .ant-menu-item-active a {
+  color: #C5387A !important;
+}
+
+.header .ant-menu-horizontal > .ant-menu-item::after,
+.header .ant-menu-horizontal > .ant-menu-item-selected::after {
+  border-bottom-color: #C5387A !important;
+}
+
+html.dark .header {
+  background: #101D6C !important;
+}
+
+/* ---------- unified brand theme (logo palette) ---------- */
+html.dark {
+  --oh-bg: #101D6C;
+  --oh-surface: #1A2678;
+  --oh-border: #2E347C;
+  --oh-text: rgba(255, 255, 255, 0.92);
+  --oh-dim: rgba(255, 255, 255, 0.55);
+  --oh-primary: #C5387A;
+}
+
+html.dark a:hover,
+html.dark .ant-menu-item a:hover {
+  color: #E0559A !important;
+}
+
+html.dark .ant-picker-cell-selected .ant-picker-cell-inner {
+  background: #C5387A !important;
+}
+
+html.dark .ant-tag {
+  background: #2E347C !important;
+  border-color: #783486 !important;
+}
+
+html.dark .ant-avatar {
+  background: #783486 !important;
+}
+
+html.dark .footer {
+  background: #0C1758 !important;
+}
+
+/* ---------- darker page background, bar stays brand navy ---------- */
+html.dark {
+  --oh-bg: #070E38;
+  --oh-surface: #101D6C;
+  --oh-border: #2E347C;
+}
+
+html.dark .header {
+  background: #101D6C !important;
+}
+
+html.dark .footer {
+  background: #101D6C !important;
+}
+
+/* ---------- reserve height for a full page of news ---------- */
+@media screen and (min-width: 701px) {
+  .postList .ant-list-items {
+    min-height: 580px;
+  }
+}
+
+/* ---------- sticky top bar ---------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.mainContent {
+  overflow: visible !important;
+}
+
+/* ---------- more magenta accents ---------- */
+html.dark {
+
+  /* post titles pick up the accent on hover */
+  .ant-list-item-meta-title > a:hover {
+    color: #C5387A !important;
+  }
+
+  /* thin magenta edge on each news row, brightening on hover */
+  .postList .ant-list-item {
+    border-left: 3px solid transparent;
+    padding-left: 0.75rem;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .postList .ant-list-item:hover {
+    border-left-color: #C5387A;
+    background: rgba(197, 56, 122, 0.06);
+  }
+
+  /* category avatar circle */
+  .postList .ant-avatar {
+    background: #C5387A !important;
+  }
+
+  /* pagination: active page and hover */
+  .ant-pagination-item-active {
+    background: #C5387A !important;
+    border-color: #C5387A !important;
+  }
+
+  .ant-pagination-item-active a {
+    color: #fff !important;
+  }
+
+  .ant-pagination-item:hover {
+    border-color: #C5387A !important;
+  }
+
+  .ant-pagination-item:hover a,
+  .ant-pagination-prev:hover .ant-pagination-item-link,
+  .ant-pagination-next:hover .ant-pagination-item-link {
+    color: #C5387A !important;
+  }
+
+  /* calendar: today marker and hover */
+  .ant-picker-cell-today .ant-picker-cell-inner::before {
+    border-color: #C5387A !important;
+  }
+
+  .ant-picker-calendar-date-today .ant-picker-calendar-date-value {
+    color: #C5387A !important;
+  }
+
+  /* calendar nav buttons */
+  .calNav:hover:not(:disabled),
+  .calToday:hover:not(:disabled) {
+    border-color: #C5387A !important;
+    color: #C5387A !important;
+  }
+
+  /* section headings already magenta - add a short underline */
+  .sectionTitle,
+  .site-calendar-widget + * h1,
+  .sider h1 {
+    position: relative;
+  }
+
+  /* scrollbar */
+  * {
+    scrollbar-color: #C5387A #101D6C;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #C5387A;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    background: #101D6C;
+  }
+
+  /* text selection */
+  ::selection {
+    background: #C5387A;
+    color: #fff;
+  }
+}
+
+/* ---------- heading + calendar today/selected fixes ---------- */
+html.dark .sectionTitle,
+html.dark h1.sectionTitle {
+  color: #C5387A !important;
+}
+
+/* selected cell: white text wins over the today rule */
+html.dark .ant-picker-cell-selected .ant-picker-cell-inner,
+html.dark .ant-picker-cell-selected .ant-picker-calendar-date-value,
+html.dark .ant-picker-cell-selected.ant-picker-cell-today .ant-picker-cell-inner,
+html.dark .ant-picker-cell-selected.ant-picker-cell-today .ant-picker-calendar-date-value {
+  background: #C5387A !important;
+  color: #ffffff !important;
+}
+
+/* today but not selected: magenta text, no fill */
+html.dark .ant-picker-cell-today:not(.ant-picker-cell-selected) .ant-picker-cell-inner,
+html.dark .ant-picker-cell-today:not(.ant-picker-cell-selected) .ant-picker-calendar-date-value {
+  color: #C5387A !important;
+  background: transparent !important;
+}
+
+/* ---------- align news and calendar headings ---------- */
+@media screen and (min-width: 701px) {
+  .content > div:first-child .sectionTitle {
+    margin-top: 0.75rem;
+  }
+
+  .sider h1 {
+    margin-top: 0.75rem;
+  }
+
+  .content,
+  .sider {
+    padding-top: 0;
+  }
+}
+
+/* remove the left edge on news rows, keep the hover tint */
+html.dark .postList .ant-list-item {
+  border-left: none;
+  padding-left: 0;
+}
+
+html.dark .postList .ant-list-item:hover {
+  border-left-color: transparent;
+}

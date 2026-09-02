@@ -2,7 +2,6 @@ import NextAuth, { NextAuthOptions } from 'next-auth'
 import Adapters from 'next-auth/adapters'
 import { NextApiHandler } from 'next'
 import prisma from '../../../../lib/clients/prisma'
-import { Role } from '@prisma/client'
 import axios from 'axios'
 import { JWT } from 'next-auth/jwt'
 
@@ -50,63 +49,9 @@ const options: NextAuthOptions = {
       if (account?.accessToken) 
       {
         token.accessToken = account?.accessToken
-        if (isNewUser || user.classId === null) {
-          // #region PRVY STUPEN
-          try {
-            const userClassFirst = await axios.post('https://graph.microsoft.com/v1.0/me/checkMemberGroups',
-            {
-              "groupIds": (await prisma.class.findMany({
-                where: {
-                  thirdGrade: false
-                },
-                select: {
-                  objectID: true
-                }
-              })).map((item) => item.objectID)
-            },
-            {
-              headers: {
-                'Authorization': `Bearer ${account.accessToken}`,
-                'Content-Type': 'application/json'
-              }
-            })
-            if (userClassFirst.data) {
-              if (userClassFirst.data.value.length != 0) {
-                const target = await prisma.class.findUnique({ where: { objectID: userClassFirst.data.value[0] } })
-                await prisma.user.update({ where: { id: user.id }, data: { classId: target?.id!, role: (target?.organising ? Role.EDITOR : Role.STUDENT) } })
-              }
-            }
-          
-            //#endregion
-            //#region DRUHY STUPEN
-            const userClassSecond = await axios.post('https://graph.microsoft.com/v1.0/me/checkMemberGroups',
-            {
-              "groupIds": (await prisma.class.findMany({
-                where: {
-                  thirdGrade: true
-                },
-                select: {
-                  objectID: true
-                }
-              })).map((item) => item.objectID)
-            },
-            {
-              headers: {
-                'Authorization': `Bearer ${account.accessToken}`,
-                'Content-Type': 'application/json'
-              }
-            })
-            if (userClassSecond.data) {
-              if (userClassSecond.data.value.length != 0) {
-                const target = await prisma.class.findUnique({ where: { objectID: userClassSecond.data.value[0] } })
-                await prisma.user.update({ where: { id: user.id }, data: { classId: target?.id!, role: (target?.organising ? Role.EDITOR : Role.STUDENT) } })
-              }
-            }
-            //#endregion
-          } catch (error) {
-            console.error(error)
-          }
-        }
+        // NOTE: automatic class + role assignment was removed on purpose.
+        // Roles and classes are set manually in the database.
+        // New users keep the schema default role (USER) and no class.
         try {
           const userImage = await axios.get((profile?.picture as string),
           {

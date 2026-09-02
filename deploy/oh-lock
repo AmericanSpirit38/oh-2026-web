@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+cp /etc/nginx/sites-available/oh-locked /etc/nginx/sites-available/default
+if nginx -t 2>/dev/null; then
+  systemctl reload nginx
+  echo "LOCKED - placeholder at /, site at /2"
+else
+  echo "nginx config test FAILED - not reloaded" >&2
+  nginx -t
+  exit 1
+fi

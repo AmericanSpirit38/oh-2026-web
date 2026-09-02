@@ -1,8 +1,7 @@
 import { signIn, signOut, useSession } from 'next-auth/client';
 import Link from 'next/link';
 import React, { ReactNode } from 'react';
-import { Menu, Spin, Avatar } from 'antd';
-import PPicture from './PPicture';
+import { Menu, Spin } from 'antd';
 
 type IAuthbarProps = {
   children?: ReactNode
@@ -27,12 +26,6 @@ const Authbar: React.FC<IAuthbarProps> = (props) => {
       ) : null}
       {!props.hide ? <>
         <Menu.Item key={"profile"}>
-          <Avatar
-            shape="square"
-            size={25}
-            src={<PPicture />}
-          />
-          <span> </span>
           <Link href="/profile"><span>{session.user?.name || "Guest"} ({session.user?.email})</span></Link>
         </Menu.Item>
       </> : null}

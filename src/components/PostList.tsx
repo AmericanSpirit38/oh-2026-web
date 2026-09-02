@@ -22,7 +22,7 @@ const PostList: React.FC<{ data?: any, query?: any, qkey?: string }> = (props) =
         loading={loading}
         itemLayout="horizontal"
         dataSource={pdata}
-        pagination={{ position: 'bottom', pageSize: 10 }}
+        pagination={{ position: 'bottom', pageSize: 8 }}
         renderItem={(item: Post & any) => {
           let actions = []
           if (item.disciplines.length > 0) {

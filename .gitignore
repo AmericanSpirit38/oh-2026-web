@@ -24,3 +24,8 @@ yarn-error.log*
 
 # Dotenv files
 .env*
+
+# deployment secrets
+.env
+PREVIEW_TOKEN.txt
+docker-compose.override.yml
