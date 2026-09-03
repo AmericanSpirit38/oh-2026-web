@@ -1341,3 +1341,131 @@ html.dark .postList .ant-list-item {
 html.dark .postList .ant-list-item:hover {
   border-left-color: transparent;
 }
+
+/* ---------- mobile: sponsors in vertical pairs ---------- */
+@media screen and (max-width: 700px) {
+  .footer .footerInner {
+    padding: 0.9rem 0.75rem;
+  }
+
+  .footer .sponsors {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.9rem 0.75rem;
+    justify-items: center;
+    align-items: center;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .footer .sponsors > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .footer .sponsors img {
+    width: auto !important;
+    max-width: 100%;
+    max-height: 2.1rem;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block;
+  }
+
+  /* five logos: last one spans both columns and centres */
+  .footer .sponsors > a:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ---------- mobile fixes: sider width, compact bar, sponsor grid ---------- */
+@media screen and (max-width: 700px) {
+
+  /* antd writes min-width inline; without this the calendar squeezes the news */
+  .sider {
+    min-width: 0 !important;
+    width: 100% !important;
+    flex: 0 0 auto !important;
+  }
+
+  /* compact two-row bar: logo + login, then nav */
+  .header {
+    padding: 0 8px !important;
+  }
+
+  .topBar {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "logo auth"
+      "nav  nav";
+    align-items: center;
+    column-gap: 0.5rem;
+    row-gap: 0;
+    min-height: 0;
+  }
+
+  .topBar .titleArea {
+    grid-area: logo;
+  }
+
+  .topBar .menuContainer {
+    grid-area: auth;
+    order: 0;
+    height: auto;
+    justify-content: flex-end;
+  }
+
+  .topBarNav {
+    grid-area: nav;
+  }
+
+  .logoMain img {
+    height: 30px;
+  }
+
+  .topBarNav .ant-menu,
+  .topBar .menuContainer .ant-menu {
+    line-height: 42px;
+  }
+
+  .topBar .ant-menu-item {
+    padding: 0 10px;
+  }
+
+  /* sponsors: children are div.ant-image, not anchors */
+  html.dark .footer .sponsors,
+  .footer .sponsors {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem 0.5rem;
+    justify-items: center;
+    align-items: center;
+    padding: 0.7rem 0.6rem;
+    margin: 0;
+  }
+
+  .footer .sponsors > * {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .footer .sponsors > *:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .footer .sponsors img {
+    width: auto !important;
+    max-width: 100%;
+    max-height: 2rem;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block;
+  }
+}
