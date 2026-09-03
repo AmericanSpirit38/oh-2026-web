@@ -1469,3 +1469,294 @@ html.dark .postList .ant-list-item:hover {
     display: block;
   }
 }
+
+/* ---------- mobile drawer nav + sponsor background ---------- */
+.navBurger {
+  display: none;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.35rem;
+  line-height: 1;
+  padding: 0.4rem 0.5rem;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 701px) {
+  .navDesktop {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .navDesktop {
+    display: none;
+  }
+
+  .navBurger {
+    display: inline-flex;
+    align-items: center;
+    grid-area: burger;
+  }
+
+  .topBar {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: "logo auth burger";
+  }
+
+  .topBarNav {
+    display: contents;
+  }
+
+  .topBar .menuContainer {
+    justify-content: flex-end;
+    padding-right: 0.25rem;
+  }
+}
+
+/* drawer panel in brand colours */
+.navDrawer .ant-drawer-content {
+  background: #101D6C;
+}
+
+.navDrawer .ant-drawer-body {
+  padding: 0.5rem 0;
+}
+
+.navDrawer .ant-menu {
+  background: transparent !important;
+  border-right: none !important;
+}
+
+.navDrawer .ant-menu-item a {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 1.05rem;
+}
+
+.navDrawer .ant-menu-item-selected,
+.navDrawer .ant-menu-item:hover {
+  background: rgba(197, 56, 122, 0.18) !important;
+}
+
+.navDrawer .ant-menu-item-selected a,
+.navDrawer .ant-menu-item a:hover {
+  color: #C5387A !important;
+}
+
+.navDrawer .ant-drawer-close {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* sponsors sit on the bar colour, not a white plate */
+html.dark .footer .sponsors,
+.footer .sponsors {
+  background: #101D6C;
+  border-radius: 0;
+}
+
+html.dark .footer {
+  background: #101D6C !important;
+}
+
+/* ---------- drawer: brand styling, login pinned bottom ---------- */
+@media screen and (max-width: 700px) {
+  /* bar is just logo + burger; login lives in the drawer */
+  .topBar {
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "logo burger";
+    align-items: center;
+    min-height: 52px;
+  }
+
+  .topBar > .menuContainer {
+    display: none;
+  }
+
+  .navBurger {
+    justify-self: end;
+  }
+}
+
+.navDrawer .ant-drawer-content {
+  background: #101D6C;
+}
+
+.navDrawer .ant-drawer-wrapper-body,
+.navDrawer .ant-drawer-body {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.navDrawer .ant-drawer-close {
+  color: rgba(255, 255, 255, 0.7);
+  top: 0;
+  right: 0;
+  padding: 0.9rem;
+  z-index: 2;
+}
+
+.navDrawer .ant-drawer-close:hover {
+  color: #C5387A;
+}
+
+.drawerInner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.drawerBrand {
+  padding: 1.1rem 1rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.drawerBrand img {
+  height: 26px;
+  width: auto;
+  display: block;
+}
+
+.navDrawer .ant-menu {
+  background: transparent !important;
+  border-right: none !important;
+  padding-top: 0.5rem;
+}
+
+.navDrawer .ant-menu-item {
+  height: 48px !important;
+  line-height: 48px !important;
+  margin: 0 !important;
+  padding: 0 1rem !important;
+  border-left: 3px solid transparent;
+}
+
+.navDrawer .ant-menu-item a {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 1.02rem;
+}
+
+.navDrawer .ant-menu-item:hover,
+.navDrawer .ant-menu-item-selected {
+  background: rgba(197, 56, 122, 0.16) !important;
+  border-left-color: #C5387A;
+}
+
+.navDrawer .ant-menu-item-selected a,
+.navDrawer .ant-menu-item a:hover {
+  color: #C5387A !important;
+}
+
+.navDrawer .ant-menu-item::after {
+  display: none !important;
+}
+
+.drawerAuth {
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.5rem 0.35rem;
+}
+
+.drawerAuth .menuContainer {
+  height: auto;
+  justify-content: flex-start;
+}
+
+.drawerAuth .ant-menu {
+  background: transparent !important;
+  border-bottom: none !important;
+  line-height: 2.6rem;
+  width: 100%;
+}
+
+.drawerAuth .ant-menu-item a,
+.drawerAuth .ant-menu-item {
+  color: rgba(255, 255, 255, 0.9) !important;
+  white-space: normal;
+  height: auto;
+}
+
+/* ---------- mobile: bigger logo, calendar padding, heading inset ---------- */
+@media screen and (max-width: 700px) {
+  .logoMain img {
+    height: 42px;
+  }
+
+  .topBar {
+    min-height: 62px;
+  }
+
+  .sider {
+    padding-bottom: 2rem;
+  }
+
+  .content > div:first-child .sectionTitle {
+    padding-left: 0.75rem;
+  }
+}
+
+/* ---------- tighten gap between Novinky and the list ---------- */
+@media screen and (max-width: 700px) {
+  .content > div:first-child {
+    margin-bottom: 0;
+  }
+
+  .content > div:first-child .sectionTitle {
+    margin-bottom: 0 !important;
+    padding-bottom: 0;
+  }
+
+  .postList {
+    margin-top: 0 !important;
+  }
+
+  .postList .ant-list-item:first-child {
+    padding-top: 0.35rem;
+  }
+}
+
+/* ---------- tighten gap between Novinky and the list ---------- */
+@media screen and (max-width: 700px) {
+  .content > div:first-child {
+    margin-bottom: 0;
+  }
+
+  .content > div:first-child .sectionTitle {
+    margin-bottom: 0 !important;
+    padding-bottom: 0;
+  }
+
+  .postList {
+    margin-top: 0 !important;
+  }
+
+  .postList .ant-list-item:first-child {
+    padding-top: 0.35rem;
+  }
+}
+
+/* ---------- gray sponsor bar, no white plate ---------- */
+html.dark .footer,
+.footer {
+  background: #2A2D3A !important;
+  padding: 0 !important;
+}
+
+html.dark .footer .sponsors,
+.footer .sponsors {
+  background: transparent !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.footer .footerInner {
+  padding: 0.85rem 1rem;
+}
+
+@media screen and (max-width: 700px) {
+  .footer .footerInner {
+    padding: 0.85rem 0.75rem;
+  }
+}
