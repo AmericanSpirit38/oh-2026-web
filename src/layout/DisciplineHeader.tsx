@@ -1,6 +1,5 @@
 import React from 'react'
 import { Layout, Image, Menu } from 'antd';
-import { Config } from '../utils/Config'
 import { Navbar } from '../components/Navbar'
 import { Authbar } from '../components/Authbar'
 import Link from 'next/link'
@@ -20,24 +19,18 @@ const DisciplineHeader: React.FC<IHeaderProps> = (props) => {
  
   return (
     <Header className="header">
-      <Authbar />
-      <Link href={`${process.env.NEXTAUTH_URL}`}>
-          {/*<div className="smalltitleArea">
-            <div className="smalllogo"><Image src={`${process.env.baseUrl}/logo_oh_ciernabielafinal_version.svg`} /></div>
-            <h1>{Config.title}</h1>
-            {props.description ? <div className="text-xl">{Config.description}</div> : <></>}
-  </div>*/}
+      <div className="topBar">
+        <Link href={`${process.env.NEXTAUTH_URL}`}>
           <div className="titleArea">
-            <div className="logo"><Image src={`${process.env.baseUrl}/logo_oh_ciernabielafinal_version.svg`} /></div>
-            <div className="logo2"><Image preview={false} src={`${process.env.baseUrl}/hypnoza_logo.svg`} /></div>
+            <div className="logoMain"><Image preview={false} src={`${process.env.baseUrl}/logo-horizont.png`} alt="OH Horizont" /></div>
           </div>
-      </Link>
+        </Link>
+        <div className="topBarNav"><Navbar active={props.active!} /></div>
+        <Authbar />
+      </div>
       <div className="discArea">
         <div className="smalllogo"><i className={`oma oma-5x ${props.discipline.icon ? props.discipline.icon : (props.discipline.category?.icon ? props.discipline.category?.icon : "oma-black-red-question-mark")}`} /></div>
         <h2>{props.discipline.name}</h2>
-        <div className="navbar">
-          <Navbar active={props.active!}/>
-        </div>
         <Menu mode="horizontal">
           <Menu.Item key="info">
             <a onClick={() => props.setter(0)}>Informácie</a>

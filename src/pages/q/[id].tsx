@@ -83,7 +83,7 @@ const qr: React.FC<{id: string}> = (props: InferGetServerSidePropsType<typeof ge
     content = <Spin />
   } else {
     content = <div>
-      <Image src={`${process.env.baseUrl}/logo_oh_ciernabielafinal_version.svg`} />
+      <Image src={`${process.env.baseUrl}/logo-horizont.png`} />
     {data?.id && data?.active ? 
     <>{session ? <>
       <h2>Vitaj {session.user.name} z triedy {session.user.class}</h2>

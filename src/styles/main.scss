@@ -1760,3 +1760,245 @@ html.dark .footer .sponsors,
     padding: 0.85rem 0.75rem;
   }
 }
+
+/* ---------- admin panel on dark background ---------- */
+html.dark {
+
+  /* dashboard link list */
+  .content ul,
+  .content ul li {
+    color: var(--oh-text);
+  }
+
+  /* tables */
+  .ant-table {
+    background: transparent !important;
+    color: var(--oh-text) !important;
+  }
+
+  .ant-table-thead > tr > th {
+    background: var(--oh-surface) !important;
+    color: var(--oh-text) !important;
+    border-bottom-color: var(--oh-border) !important;
+  }
+
+  .ant-table-tbody > tr > td {
+    border-bottom-color: var(--oh-border) !important;
+    color: var(--oh-text) !important;
+  }
+
+  .ant-table-tbody > tr:hover > td,
+  .ant-table-tbody > tr.ant-table-row:hover > td {
+    background: rgba(197, 56, 122, 0.10) !important;
+  }
+
+  .ant-table-placeholder,
+  .ant-table-placeholder .ant-empty-description {
+    background: transparent !important;
+    color: var(--oh-dim) !important;
+  }
+
+  .ant-table-cell-fix-left,
+  .ant-table-cell-fix-right {
+    background: var(--oh-bg) !important;
+  }
+
+  /* forms */
+  .ant-form-item-label > label {
+    color: var(--oh-text) !important;
+  }
+
+  .ant-input,
+  .ant-input-affix-wrapper,
+  textarea.ant-input,
+  .ant-input-number,
+  .ant-input-number-input,
+  .ant-picker {
+    background: var(--oh-surface) !important;
+    border-color: var(--oh-border) !important;
+    color: var(--oh-text) !important;
+  }
+
+  .ant-input::placeholder,
+  textarea.ant-input::placeholder,
+  .ant-picker-input > input::placeholder,
+  .ant-select-selection-placeholder {
+    color: rgba(255, 255, 255, 0.35) !important;
+  }
+
+  .ant-picker-input > input {
+    color: var(--oh-text) !important;
+  }
+
+  .ant-picker-suffix,
+  .ant-picker-clear {
+    color: var(--oh-dim) !important;
+    background: transparent !important;
+  }
+
+  /* date picker dropdown */
+  .ant-picker-dropdown .ant-picker-panel-container {
+    background: var(--oh-surface) !important;
+  }
+
+  .ant-picker-header,
+  .ant-picker-header button,
+  .ant-picker-body th {
+    color: var(--oh-text) !important;
+  }
+
+  .ant-picker-header {
+    border-bottom-color: var(--oh-border) !important;
+  }
+
+  /* buttons */
+  .ant-btn {
+    background: var(--oh-surface) !important;
+    border-color: var(--oh-border) !important;
+    color: var(--oh-text) !important;
+  }
+
+  .ant-btn:hover {
+    border-color: #C5387A !important;
+    color: #C5387A !important;
+  }
+
+  .ant-btn-primary {
+    background: #C5387A !important;
+    border-color: #C5387A !important;
+    color: #fff !important;
+  }
+
+  .ant-btn-primary:hover {
+    background: #D9508D !important;
+    border-color: #D9508D !important;
+    color: #fff !important;
+  }
+
+  .ant-btn-dangerous {
+    border-color: #cf1322 !important;
+    color: #ff4d4f !important;
+  }
+
+  /* modals and popconfirm */
+  .ant-modal-content,
+  .ant-modal-header,
+  .ant-popover-inner {
+    background: var(--oh-surface) !important;
+  }
+
+  .ant-modal-title,
+  .ant-modal-content,
+  .ant-popover-inner-content {
+    color: var(--oh-text) !important;
+  }
+
+  .ant-modal-header,
+  .ant-modal-footer {
+    border-color: var(--oh-border) !important;
+  }
+
+  .ant-modal-close {
+    color: var(--oh-dim) !important;
+  }
+
+  /* upload */
+  .ant-upload,
+  .ant-upload-list-item-name {
+    color: var(--oh-text) !important;
+  }
+
+  /* messages / alerts */
+  .ant-message-notice-content,
+  .ant-notification-notice {
+    background: var(--oh-surface) !important;
+    color: var(--oh-text) !important;
+  }
+}
+
+/* ---------- lighter sponsor bar + matching overscroll ---------- */
+html.dark .footer,
+.footer {
+  background: #c4c4c4 !important;
+}
+
+/* bottom overscroll shows the sponsor grey, top shows the bar navy */
+html.dark,
+html {
+  background: #c4c4c4;
+}
+
+html.dark body,
+body {
+  background: var(--oh-bg);
+}
+
+/* ikona disciplíny v hlavičke - skrytá */
+.discArea .smalllogo {
+  display: none;
+}
+
+/* ---------- tagy: pozadie ako hlavné pozadie stránky ---------- */
+html.dark .ant-tag,
+html.dark .ant-list-item-action .ant-tag {
+  background: var(--oh-bg) !important;
+  border-color: var(--oh-border) !important;
+  color: var(--oh-text) !important;
+}
+
+html.dark .ant-tag .anticon,
+html.dark .ant-tag a {
+  color: var(--oh-text) !important;
+}
+
+/* oprava: pozadie patrí len deliacej čiare, nie položkám akcií */
+html.dark .ant-list-item-action > li {
+  background-color: transparent !important;
+}
+
+html.dark .ant-list-item-action-split {
+  background-color: var(--oh-border) !important;
+}
+
+/* ---------- detail príspevku: hlavička ---------- */
+html.dark .ant-page-header {
+  background: transparent !important;
+}
+
+html.dark .ant-page-header-heading-title {
+  color: var(--oh-text) !important;
+}
+
+html.dark .ant-page-header-heading-sub-title {
+  color: var(--oh-dim) !important;
+}
+
+html.dark .ant-page-header-heading-sub-title a {
+  color: #C5387A !important;
+}
+
+html.dark .ant-page-header-back-button {
+  color: var(--oh-text) !important;
+}
+
+html.dark .ant-page-header-back-button:hover {
+  color: #C5387A !important;
+}
+
+html.dark .post,
+html.dark .post p,
+html.dark .post li,
+html.dark .post td,
+html.dark .post th,
+html.dark .post blockquote {
+  color: var(--oh-text) !important;
+}
+
+html.dark .post hr {
+  border-color: var(--oh-border) !important;
+}
+
+html.dark .post code {
+  background: var(--oh-surface) !important;
+  color: var(--oh-text) !important;
+}

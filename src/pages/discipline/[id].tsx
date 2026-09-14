@@ -74,28 +74,7 @@ const MainDisc: React.FC<{id: Number}> = (props: InferGetServerSidePropsType<typ
           </> : null)}
             
           </Content>   
-          <Sider className="sider discSider" collapsedWidth="0" theme="light">
-            {session ? <div className="discResults">
-              <h1>Trieda - {session?.user?.class}</h1>
-              {data?.events.map((e: Event & any) => {
-                return e.results.map((er: EventResult & any) => {
-                  if (er.class.name === session?.user?.class) {
-                    return <h5 key={e.id}>{e.name} - {er.place}. miesto</h5>
-                  }
-                  return null;
-                })
-              })}
-            </div> : null}
-            <h1>Udalosti v budúcnosti</h1>
-            <div className="futureEvents">
-            {data?.events.map((e: Event & any) => {
-              if (parseISO(e.endDate).getTime() > Date.now()) {
-                return <DeadlineEvent key={e.id} event={e} />
-              }
-              return null;
-            })}
-            </div>
-          </Sider>
+
         </Layout>
         <Footer />
       </Layout>
