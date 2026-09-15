@@ -10,7 +10,6 @@ import Header from "../layout/AppHeader";
 import { Main } from "../layout/Main";
 import { Meta } from "../layout/Meta";
 import { Layout } from "antd";
-import { Bar } from 'react-chartjs-2';
 import { useQuery } from "react-query";
 import { fetchResults} from "../../lib/queries/event-queries";
 import {EventResult} from ".prisma/client";
@@ -28,50 +27,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
 };
 
 const Disciplines: React.FC = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const { isLoading, isError, data: res, error } = useQuery("results", fetchResults)
   const [session, loading] = useSession()
 
-  var d = [0,0,0]
-  if (!isLoading && !isError && !loading) {
-    const classed: Event[] = res?.filter((er: EventResult & any) => er.class?.name === session?.user.class);
-    classed?.forEach((x: any) => x.place < 4 ? d[x.place-1]++ : null)
-  }
 
-
-  const data = {
-    labels: ['🥇', '🥈', '🥉'],
-    datasets: [
-      {
-        label: 'Počet umiestnení',
-        data: d,
-        backgroundColor: [
-          'rgba(255, 0, 0, 0.5)',
-          'rgba(255, 0, 0, 0.5)',
-          'rgba(255, 0, 0, 0.5)',
-        ],
-        borderColor: [
-          'rgba(255, 0, 0, 0.9)',
-          'rgba(255, 0, 0, 0.9)',
-          'rgba(255, 0, 0, 0.9)',
-        ],
-        borderWidth: 1,
-      },
-    ],
-  };
-
-  const options = {
-    scales: {
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true,
-          },
-        },
-      ],
-    },
-    responsive: true,
-    maintainAspectRatio: false,
-  };
 
 
   return (
@@ -86,19 +44,9 @@ const Disciplines: React.FC = (props: InferGetServerSidePropsType<typeof getServ
       <Layout className="mainContent">
         <Header />
         <Layout className="limit">
-          {session ? <>
-            <Content className="content">
-              <DisciplineList/>
-            </Content>
-            <Sider className="sider" collapsedWidth="0" theme="light">
-              <div className="discChart">
-                <h1>Trieda - {session.user.class}</h1>
-                <Bar height={150} data={data} options={options} />
-              </div>
-            </Sider></>
-          :  <Content className="content">
+          <Content className="content">
           <DisciplineList/>
-        </Content>}
+        </Content>
         </Layout>
         <Footer />
       </Layout>

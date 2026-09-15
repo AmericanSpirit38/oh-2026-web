@@ -2002,3 +2002,118 @@ html.dark .post code {
   background: var(--oh-surface) !important;
   color: var(--oh-text) !important;
 }
+
+/* ---------- pätička: pevná výška, prázdne miesto berie obsah ---------- */
+.mainContent {
+  min-height: 100vh;
+  display: flex !important;
+  flex-direction: column;
+}
+
+.mainContent > .limit,
+.mainContent > .limit-reversed {
+  flex: 1 0 auto;
+}
+
+.footer {
+  display: block !important;
+  flex: 0 0 auto;
+  width: 100% !important;
+}
+
+.footer .footerInner {
+  max-height: 88px;
+  overflow: hidden;
+  padding: 0.85rem 1rem;
+}
+
+.footer .sponsors img {
+  max-height: 2.4rem;
+  width: auto !important;
+}
+
+@media screen and (max-width: 700px) {
+  .footer .footerInner {
+    max-height: none;
+  }
+}
+
+/* sponzori na PC: jeden riadok, nič sa neoreže */
+@media screen and (min-width: 701px) {
+  .footer .footerInner {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .footer .sponsors {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .footer .sponsors > * {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer .sponsors img {
+    max-height: 2.4rem;
+    max-width: 100%;
+    width: auto !important;
+  }
+}
+
+/* ---------- biela pätička so sponzormi ---------- */
+html.dark .footer,
+.footer {
+  background: #ffffff !important;
+}
+
+html, html.dark {
+  background: #ffffff;
+}
+
+html.dark .footer .sponsors,
+.footer .sponsors {
+  background: transparent !important;
+}
+
+/* ---------- väčšia pätička na PC ---------- */
+@media screen and (min-width: 701px) {
+  .footer .footerInner {
+    padding: 1.6rem 2rem;
+  }
+
+  .footer .sponsors {
+    gap: 1.5rem;
+  }
+
+  .footer .sponsors img {
+    max-height: 3.6rem;
+  }
+}
+
+/* posledné logo roztiahnuť len pri nepárnom počte */
+@media screen and (max-width: 700px) {
+  .footer .sponsors > *:last-child {
+    grid-column: auto;
+  }
+
+  .footer .sponsors > *:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* sponzori na mobile: normálny tok mriežky, žiadne roztiahnutie */
+@media screen and (max-width: 700px) {
+  .footer .sponsors > *,
+  .footer .sponsors > *:last-child,
+  .footer .sponsors > *:last-child:nth-child(odd) {
+    grid-column: auto !important;
+  }
+}

@@ -24,8 +24,8 @@ const Navbar: React.FC<INavbarProps> = (props) => {
         </Link>
       </Menu.Item>
       <Menu.Item key={"disciplines"}>
-        <Link href="/disciplines">
-          <a className="text-bold" data-active={isActive('/disciplines')} onClick={() => setOpen(false)}>Disciplíny</a>
+        <Link href="/disci">
+          <a className="text-bold" data-active={isActive('/disci')} onClick={() => setOpen(false)}>Disciplíny</a>
         </Link>
       </Menu.Item>
       <Menu.Item key={"results"}>
