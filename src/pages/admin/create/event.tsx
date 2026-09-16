@@ -12,6 +12,17 @@ import {Discipline} from '.prisma/client'
 import {useQuery} from 'react-query'
 import {fetchDisciplines} from '../../../../lib/queries/discipline-queries'
 
+const EVENT_COLORS = [
+  { value: '#C96D96', label: 'Ružová' },
+  { value: '#D9A441', label: 'Jantárová' },
+  { value: '#6FB26C', label: 'Zelená' },
+  { value: '#4FA8A0', label: 'Tyrkysová' },
+  { value: '#6FA8DC', label: 'Modrá' },
+  { value: '#9C8ADE', label: 'Fialová' },
+  { value: '#D97A6C', label: 'Koralová' },
+  { value: '#C9B58A', label: 'Piesková' },
+];
+
 const { Content } = Layout;
 const { Option } = Select;
 
@@ -124,10 +135,18 @@ const EventDraft: React.FC = (props: InferGetServerSidePropsType<typeof getServe
           <Form.Item
             name="color"
             label="Farba"
+            initialValue="#C96D96"
             hasFeedback
             rules={[{ required: false }]}
           >
-            <Input type="color" />
+            <Select placeholder="Vyberte farbu">
+              {EVENT_COLORS.map((c) => (
+                <Option key={c.value} value={c.value}>
+                  <span style={{display:'inline-block',width:12,height:12,borderRadius:'50%',background:c.value,marginRight:8,verticalAlign:'middle'}} />
+                  {c.label}
+                </Option>
+              ))}
+            </Select>
           </Form.Item>
           <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
             <Button value="Create" htmlType="submit">{sub}</Button>

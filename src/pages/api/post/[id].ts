@@ -79,15 +79,15 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
         data: {
           title: title,
           disciplines: {
-            connect: discipline ? { id: parseInt(discipline!) } : undefined,
+            set: discipline ? [{ id: parseInt(discipline!) }] : [],
           },
           slug: title.replace(/ /g, '-').toLowerCase(),
           content: content,
           categories: {
-            connect: categories?.map((id: string) => {return { id: parseInt(id) }}),
+            set: categories?.map((id: string) => {return { id: parseInt(id) }}) ?? [],
           },
           tags: {
-            connect: tags?.map((id: string) => {return { id: parseInt(id) }}),
+            set: tags?.map((id: string) => {return { id: parseInt(id) }}) ?? [],
           },
           author: { connect: { email: session?.user?.email! } },
         },

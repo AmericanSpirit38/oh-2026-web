@@ -24,7 +24,7 @@ const options: NextAuthOptions = {
       name: "GAMČA account",
       type: "oauth",
       version: "2.0",
-      scope: "https://graph.microsoft.com/user.read",
+      scope: "https://graph.microsoft.com/user.read https://graph.microsoft.com/GroupMember.Read.All",
       params: { grant_type: "authorization_code" },
       domain: 'https://login.microsoftonline.com',
       accessTokenUrl: `https://login.microsoftonline.com/${AZURE_TENANT_ID}/oauth2/v2.0/token`,

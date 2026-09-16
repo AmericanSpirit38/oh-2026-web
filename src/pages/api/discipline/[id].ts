@@ -73,7 +73,37 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       return res.status(422).end();
     }
   } else if (req.method === "PUT"){
-    // TODO nevie ci sa to da spravit nejak pekne alebo iba tak skaredo
+    try {
+      const disciplineId = req.query.id
+      const session = await getSession({ req })
+      if (!session) return res.status(401).end();
+      if (session?.user.role != 'ADMIN') if (session?.user.role != 'EDITOR') return res.status(401).end();
+
+      const { name, icon, description, category, tags } = req.body
+
+      const data: any = {}
+      if (name !== undefined && name !== null) {
+        data.name = name
+        data.slug = String(name).replace(/ /g, '-').toLowerCase()
+      }
+      if (icon !== undefined) data.icon = icon
+      if (description !== undefined) data.description = description
+      if (category !== undefined && category !== null && category !== '') {
+        data.category = { connect: { id: parseInt(category) } }
+      }
+      if (tags !== undefined && tags !== null) {
+        data.tags = { set: tags.map((id: string) => ({ id: parseInt(id) })) }
+      }
+
+      const discipline = await prisma.discipline.update({
+        where: { id: Number(disciplineId) },
+        data: data,
+      });
+      return res.status(200).json(discipline);
+    } catch (error) {
+      console.error(error);
+      return res.status(422).end();
+    }
   } else {
     throw new Error(
       `The HTTP ${req.method} method is not supported at this route.`

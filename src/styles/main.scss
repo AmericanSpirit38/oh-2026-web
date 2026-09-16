@@ -2117,3 +2117,20 @@ html.dark .footer .sponsors,
     grid-column: auto !important;
   }
 }
+
+/* ---------- oprava: obsah sa nesmie stlacit pod svoju vysku ---------- */
+.mainContent > * {
+  flex-shrink: 0;
+}
+
+.mainContent > .ant-layout,
+.mainContent > .limit,
+.mainContent > .limit-reversed {
+  flex: 1 0 auto;
+  min-height: 0;
+}
+
+.mainContent > .footer,
+.mainContent > .header {
+  flex: 0 0 auto;
+}

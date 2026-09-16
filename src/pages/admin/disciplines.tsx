@@ -31,7 +31,7 @@ const columns = [
     key: 'action',
     render: (text, record) => (
       <Space size="middle">
-        <>Editovať</>
+        <Link href={`/admin/discipline/${record.id}`}><a>Editovať</a></Link>
         <a onClick={async() => {
           try {
             await fetch(`/api/discipline/${record.id}`, {
