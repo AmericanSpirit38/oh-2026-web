@@ -10,7 +10,19 @@ import { Album } from ".prisma/client";
 
 const { Content } = Layout
 
+const meta = (a: any) => {
+  const parts = []
+  if (a.date) {
+    parts.push(new Date(a.date).toLocaleDateString('sk-SK', { day: 'numeric', month: 'long', year: 'numeric' }))
+  }
+  if (a.count != null) {
+    const n = a.count
+    const word = n === 1 ? 'fotka' : (n >= 2 && n <= 4 ? 'fotky' : 'fotiek')
+    parts.push(n + ' ' + word)
+  }
+  return parts.length > 0 ? parts.join(' · ') : null
 }
+
 
 const Albums: React.FC = () => {
   const { isLoading, data } = useQuery("albums", fetchAlbums);
@@ -42,6 +54,7 @@ const Albums: React.FC = () => {
                     <List.Item.Meta
                       avatar={<Avatar><i className="oma oma-2x oma-black-camera" /></Avatar>}
                       title={<span>{item.name}</span>}
+                      description={meta(item)}
                     />
                   </Skeleton>
                 </a>

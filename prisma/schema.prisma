@@ -198,9 +198,11 @@ model Code {
 }
 
 model Album {
-  id   Int    @id @default(autoincrement())
-  name String
-  link String
+  id    Int       @id @default(autoincrement())
+  name  String
+  link  String
+  count Int?
+  date  DateTime?
 }
 
 enum Role {

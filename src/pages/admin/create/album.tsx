@@ -115,6 +115,22 @@ const AlbumDraft: React.FC = (props: InferGetServerSidePropsType<typeof getServe
               type="url"
             />
           </Form.Item>
+          <Form.Item
+            {...formItemLayout}
+            name="count"
+            label="Počet fotiek"
+            rules={[{ required: false }]}
+          >
+            <Input type="number" min={0} />
+          </Form.Item>
+          <Form.Item
+            {...formItemLayout}
+            name="date"
+            label="Dátum"
+            rules={[{ required: false }]}
+          >
+            <Input type="date" />
+          </Form.Item>
           <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
             <Button value="Create" htmlType="submit">{sub}</Button>
           </Form.Item>
