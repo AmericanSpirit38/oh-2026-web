@@ -2134,3 +2134,55 @@ html.dark .footer .sponsors,
 .mainContent > .header {
   flex: 0 0 auto;
 }
+
+/* ---------- stranka Fotky: mriezka v style prispevkov ---------- */
+.albumList .ant-list-item {
+  border-bottom: none !important;
+  padding: 0 !important;
+}
+
+.albumItem {
+  display: block;
+  padding: 0.85rem 0.9rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.albumItem:hover {
+  background: rgba(197, 56, 122, 0.06);
+  border-color: #C5387A;
+}
+
+.albumItem .ant-list-item-meta {
+  margin-bottom: 0;
+}
+
+.albumItem .ant-list-item-meta-title {
+  margin-bottom: 0.1rem;
+  font-size: 1rem;
+}
+
+html.dark .albumItem .ant-list-item-meta-title,
+html.dark .albumItem .ant-list-item-meta-title > span {
+  color: var(--oh-text) !important;
+}
+
+html.dark .albumItem:hover .ant-list-item-meta-title > span {
+  color: #C5387A !important;
+}
+
+html.dark .albumItem .ant-list-item-meta-description {
+  color: var(--oh-dim) !important;
+  font-size: 0.82rem;
+}
+
+@media screen and (max-width: 700px) {
+  .albumList {
+    padding: 0 0.5rem;
+  }
+
+  .albumItem {
+    padding: 0.7rem 0.6rem;
+  }
+}

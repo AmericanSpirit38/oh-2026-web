@@ -3,15 +3,18 @@ import Footer from "../layout/AppFooter";
 import { Main } from "../layout/Main";
 import { Meta } from "../layout/Meta";
 import Header from "../layout/AppHeader";
-import { Layout } from "antd";
-import {fetchAlbums} from "../../lib/queries/user-queries";
-import {useQuery} from "react-query";
-import {Album} from ".prisma/client";
+import { Layout, List, Avatar, Skeleton } from "antd";
+import { fetchAlbums } from "../../lib/queries/user-queries";
+import { useQuery } from "react-query";
+import { Album } from ".prisma/client";
 
 const { Content } = Layout
 
-const Results: React.FC = (props) => {
-  const { isLoading, isError, data, error } = useQuery("albums", fetchAlbums);
+}
+
+const Albums: React.FC = () => {
+  const { isLoading, data } = useQuery("albums", fetchAlbums);
+
   return (
     <Main
       meta={(
@@ -22,11 +25,30 @@ const Results: React.FC = (props) => {
       )}
     >
       <Layout className="mainContent">
-        <Header /> 
+        <Header active="results" />
         <Content className="content">
-          <ul>
-            {data?.map((x: Album) => <li key={x.id}><a href={x.link}>{x.name}</a></li>)}
-          </ul>
+          <div><h1 className="text-xl mt-3 mb-2 sectionTitle">Fotky</h1></div>
+          <List
+            className="albumList"
+            grid={{ gutter: 16, xs: 1, sm: 2, md: 2, lg: 3, xl: 3, xxl: 4 }}
+            loading={isLoading}
+            itemLayout="horizontal"
+            dataSource={data}
+            locale={{ emptyText: "Zatiaľ tu nie sú žiadne albumy" }}
+            renderItem={(item: Album) => (
+              <List.Item>
+                <a className="albumItem" href={item.link} target="_blank" rel="noopener noreferrer">
+                  <Skeleton avatar title={false} loading={isLoading} active>
+                    <List.Item.Meta
+                      avatar={<Avatar><i className="oma oma-2x oma-black-camera" /></Avatar>}
+                      title={<span>{item.name}</span>}
+                    />
+                  </Skeleton>
+                </a>
+              </List.Item>
+            )}
+          />
+          <br />
         </Content>
         <Footer />
       </Layout>
@@ -34,4 +56,4 @@ const Results: React.FC = (props) => {
   )
 };
 
-export default Results
+export default Albums
