@@ -12,10 +12,27 @@ generator client {
 }
 
 model Sifra {
+  id          Int                @id @default(autoincrement())
+  name        String
+  answer      String
+  startTime   DateTime
+  file        Bytes?
+  fileName    String?
+  mimeType    String?
+  submissions CipherSubmission[]
+}
+
+model CipherSubmission {
   id        Int      @id @default(autoincrement())
-  name      String
+  sifra     Sifra    @relation(fields: [sifraId], references: [id])
+  sifraId   Int
+  class     Class?   @relation(fields: [classId], references: [id])
+  classId   Int?
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    Int?
   answer    String
-  startTime DateTime
+  correct   Boolean
+  createdAt DateTime @default(now())
 }
 
 model Post {
@@ -70,6 +87,7 @@ model User {
   aboutMe       String?
   comments      Comment[] @relation("CommentsAuthored")
   likes         Comment[] @relation(references: [id])
+  cipherSubmissions CipherSubmission[]
   accounts      Account[]
   sessions      Session[]
 
@@ -171,6 +189,7 @@ model Class {
   users           User[]
   results         EventResult[]
   codes           Code[]
+  cipherSubmissions CipherSubmission[]
   ciphersDone     Int[]
   ciphersTime     Int           @default(0)
   cipherIncorrect Int           @default(0)

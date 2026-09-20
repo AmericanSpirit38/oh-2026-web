@@ -2186,3 +2186,67 @@ html.dark .albumItem .ant-list-item-meta-description {
     padding: 0.7rem 0.6rem;
   }
 }
+
+/* ---------- sifrovacka ---------- */
+.cipherList .ant-list-item {
+  border-bottom: none !important;
+  padding: 0 0 0.6rem 0 !important;
+}
+
+.cipherCard {
+  border: 1px solid var(--oh-border, #2E347C);
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+}
+
+.cipherHead {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.cipherName {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+html.dark .cipherName {
+  color: var(--oh-text);
+}
+
+.cipherFile {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+  font-size: 0.92rem;
+}
+
+.cipherForm {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.7rem;
+  max-width: 420px;
+}
+
+.cipherStats {
+  margin: 0.5rem 0 1rem;
+}
+
+html.dark .cipherStats .ant-statistic-title {
+  color: var(--oh-dim) !important;
+}
+
+html.dark .cipherStats .ant-statistic-content {
+  color: var(--oh-text) !important;
+}
+
+@media screen and (max-width: 700px) {
+  .cipherList, .cipherHistory {
+    padding: 0 0.5rem;
+  }
+  .cipherForm {
+    max-width: none;
+  }
+}

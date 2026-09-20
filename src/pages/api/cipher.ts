@@ -3,73 +3,107 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/client'
 import prisma from '../../../lib/clients/prisma';
 
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '25mb',
+    },
+  },
+}
+
+const normalize = (s: any) => String(s == null ? '' : s).trim().toLowerCase().replace(/\s+/g, ' ')
+
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "PUT") {
     try {
-      const { name, answer } = req.body
+      const { id, name, answer } = req.body
       const session = await getSession({ req })
-      if (session) {
-        let cipher = await prisma.sifra.findFirst({where: { name: name }})
-        const curClass = await prisma.class.findFirst({where: {name: session?.user.class} })
+      if (!session) return res.status(401).end();
 
-        if (cipher?.answer == answer)
-        {
-          if (cipher?.id && curClass?.name && !curClass.ciphersDone.includes(cipher.id)) {
-            var duration = moment.duration(moment(new Date()).diff(cipher.startTime));
-            var hours = Math.ceil(duration.asHours());
-            var oldHours = curClass.ciphersTime
+      const cipher = id
+        ? await prisma.sifra.findUnique({ where: { id: Number(id) } })
+        : await prisma.sifra.findFirst({ where: { name: name } })
 
-            await prisma.class.updateMany({
-              where: {
-                name: curClass?.name
-              },
-              data: {
-                ciphersDone: {
-                  push: cipher.id
-                },
-                ciphersTime: hours+oldHours,
-              }
-            })
+      if (!cipher) return res.status(404).json({ valid: false, message: 'Šifra neexistuje' });
 
-          }
-          return res.status(200).json({valid: true});
-        } else {
-          if (cipher?.id && curClass?.name && !curClass.ciphersDone.includes(cipher.id)) {
-            var oldHours = curClass.ciphersTime
+      if (new Date(cipher.startTime) > new Date()) {
+        return res.status(403).json({ valid: false, message: 'Šifra ešte nezačala' });
+      }
 
-            await prisma.class.updateMany({
-              where: {
-                name: curClass?.name
-              },
-              data: {
-                cipherIncorrect: curClass.cipherIncorrect+1,
-              }
-            })
+      const curClass = session?.user?.class
+        ? await prisma.class.findFirst({ where: { name: session.user.class } })
+        : null
 
-          }
+      const correct = normalize(cipher.answer) === normalize(answer)
+      const already = curClass ? curClass.ciphersDone.includes(cipher.id) : false
+
+      await prisma.cipherSubmission.create({
+        data: {
+          sifraId: cipher.id,
+          classId: curClass ? curClass.id : null,
+          userId: session.user.id ? Number(session.user.id) : null,
+          answer: String(answer == null ? '' : answer),
+          correct: correct,
         }
-      } else return res.status(401).end();
-      return res.status(200).json({valid: false});
+      })
+
+      if (curClass && !already) {
+        if (correct) {
+          const duration = moment.duration(moment(new Date()).diff(cipher.startTime));
+          const hours = Math.ceil(duration.asHours());
+          await prisma.class.update({
+            where: { id: curClass.id },
+            data: {
+              ciphersDone: { push: cipher.id },
+              ciphersTime: curClass.ciphersTime + hours,
+            }
+          })
+        } else {
+          await prisma.class.update({
+            where: { id: curClass.id },
+            data: { cipherIncorrect: curClass.cipherIncorrect + 1 }
+          })
+        }
+      }
+
+      return res.status(200).json({ valid: correct, already: already });
     } catch (error) {
-      console.log(error)
+      console.error('[oh] cipher PUT', error)
       return res.status(422).end();
     }
   } else if (req.method === "POST") {
     try {
-      const { name, answer, start } = req.body
+      const { name, answer, start, file, fileName, mimeType } = req.body
       const session = await getSession({ req })
+      if (!session) return res.status(401).end();
       if (session?.user.role != 'ADMIN') if (session?.user.role != 'EDITOR') return res.status(401).end();
-      const event = await prisma.sifra.create({
+
+      const sifra = await prisma.sifra.create({
         data: {
           name: name,
           answer: answer,
           startTime: start,
+          file: file ? Buffer.from(String(file), 'base64') : null,
+          fileName: fileName ? String(fileName) : null,
+          mimeType: mimeType ? String(mimeType) : null,
         }
       })
-      console.log(event)
-      return res.status(201).json(event);
+      return res.status(201).json({ id: sifra.id, name: sifra.name });
     } catch (error) {
-      console.log(error)
+      console.error('[oh] cipher POST', error)
+      return res.status(422).end();
+    }
+  } else if (req.method === "DELETE") {
+    try {
+      const { id } = req.body
+      const session = await getSession({ req })
+      if (!session) return res.status(401).end();
+      if (session?.user.role != 'ADMIN') if (session?.user.role != 'EDITOR') return res.status(401).end();
+      await prisma.cipherSubmission.deleteMany({ where: { sifraId: Number(id) } })
+      await prisma.sifra.delete({ where: { id: Number(id) } })
+      return res.status(200).json({ ok: true });
+    } catch (error) {
+      console.error('[oh] cipher DELETE', error)
       return res.status(422).end();
     }
   } else {

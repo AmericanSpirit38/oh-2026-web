@@ -61,6 +61,7 @@ const Dashboard: React.FC = (props: InferGetServerSidePropsType<typeof getServer
           <li><Link href="/admin/create/sifra">Vytvoriť novú šifru</Link></li>
           Ostatné:
           <li><Link href="/admin/posts">Spravovať príspevky</Link></li>
+          <li><Link href="/admin/sifry">Prehľad šifrovačky</Link></li>
           <li><Link href="/admin/tags">Spravovať tagy</Link></li>
           <li><Link href="/admin/events">Spravovať udalosti</Link></li>
           <li><Link href="/admin/albums">Spravovať albumy</Link></li>
