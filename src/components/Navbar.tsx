@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/client';
 import React, { ReactNode, useState } from 'react';
 import { Menu, Drawer } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
@@ -12,6 +13,7 @@ type INavbarProps = {
 
 const Navbar: React.FC<INavbarProps> = (props) => {
   const router = useRouter()
+  const [session] = useSession()
   const [open, setOpen] = useState(false)
   const isActive: (pathname: string) => boolean = (pathname) =>
     router.pathname === pathname
@@ -33,6 +35,11 @@ const Navbar: React.FC<INavbarProps> = (props) => {
           <a className="text-bold" data-active={isActive('/albums')} onClick={() => setOpen(false)}>Fotky</a>
         </Link>
       </Menu.Item>
+      {session ? <Menu.Item key={"sifrovacka"}>
+        <Link href="/sifrovacka">
+          <a className="text-bold" data-active={isActive('/sifrovacka')} onClick={() => setOpen(false)}>Šifrovačka</a>
+        </Link>
+      </Menu.Item> : null}
       {props.children}
     </>
   )

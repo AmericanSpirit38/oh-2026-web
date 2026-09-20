@@ -93,6 +93,29 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       console.error('[oh] cipher POST', error)
       return res.status(422).end();
     }
+  } else if (req.method === "PATCH") {
+    try {
+      const { id, name, answer, start, file, fileName, mimeType } = req.body
+      const session = await getSession({ req })
+      if (!session) return res.status(401).end();
+      if (session?.user.role != 'ADMIN') if (session?.user.role != 'EDITOR') return res.status(401).end();
+
+      const data: any = {}
+      if (name !== undefined && name !== null) data.name = name
+      if (answer !== undefined && answer !== null) data.answer = answer
+      if (start !== undefined && start !== null) data.startTime = new Date(start)
+      if (file) {
+        data.file = Buffer.from(String(file), 'base64')
+        data.fileName = fileName ? String(fileName) : null
+        data.mimeType = mimeType ? String(mimeType) : null
+      }
+
+      const sifra = await prisma.sifra.update({ where: { id: Number(id) }, data: data })
+      return res.status(200).json({ id: sifra.id, name: sifra.name });
+    } catch (error) {
+      console.error('[oh] cipher PATCH', error)
+      return res.status(422).end();
+    }
   } else if (req.method === "DELETE") {
     try {
       const { id } = req.body

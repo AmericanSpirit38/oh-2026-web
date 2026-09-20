@@ -2250,3 +2250,17 @@ html.dark .cipherStats .ant-statistic-content {
     max-width: none;
   }
 }
+
+/* ---------- detail sifry ---------- */
+.cipherDetail {
+  max-width: 900px;
+}
+
+.cipherLoading {
+  padding: 3rem 0;
+  text-align: center;
+}
+
+html.dark .cipherDetail p {
+  color: var(--oh-text);
+}

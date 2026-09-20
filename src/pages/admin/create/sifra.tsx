@@ -42,6 +42,18 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 //props: InferGetServerSidePropsType<typeof getServerSideProps>
 const EventDraft: React.FC = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [sub, setSub] = useState(<span>Vytvoriť</span>)
+  const [fileData, setFileData] = useState<any>(null)
+
+  const onFile = (e: any) => {
+    const f = e.target.files && e.target.files[0]
+    if (!f) { setFileData(null); return }
+    const r = new FileReader()
+    r.onload = () => {
+      const s = String(r.result)
+      setFileData({ name: f.name, type: f.type || 'application/octet-stream', data: s.substring(s.indexOf(',') + 1) })
+    }
+    r.readAsDataURL(f)
+  }
 
   const submitData = async(values: any) => {
     setSub(<Spin />)
@@ -49,7 +61,7 @@ const EventDraft: React.FC = (props: InferGetServerSidePropsType<typeof getServe
       await fetch('/api/cipher', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, file: fileData ? fileData.data : null, fileName: fileData ? fileData.name : null, mimeType: fileData ? fileData.type : null }),
       })
       await Router.push('/admin')
     } catch (error) {
@@ -121,6 +133,13 @@ const EventDraft: React.FC = (props: InferGetServerSidePropsType<typeof getServe
             rules={[{ required: true }]}
           >
             <DatePicker showTime />
+          </Form.Item>
+          <Form.Item
+            {...formItemLayout}
+            label="Zadanie (súbor)"
+          >
+            <input type="file" onChange={onFile} accept=".pdf,.png,.jpg,.jpeg,.gif,.webp,.zip,.docx" />
+            {fileData ? <div className="ant-form-text">{fileData.name}</div> : null}
           </Form.Item>
           <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
             <Button value="Create" htmlType="submit">{sub}</Button>
